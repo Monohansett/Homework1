@@ -1,0 +1,24 @@
+.flex__buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 300px;
+}
+
+.styledButtons {
+  color: indigo;
+  background: transparent;
+  border: solid 2px;
+  border-color: indigo;
+  text-transform: uppercase;
+  transform: skewX(-25deg);
+  padding: 5px;
+  margin: 5px;
+}
+
+.styledButtons:hover {
+    color: white;
+    background: indigo;
+    border-color: indigo;
+    
+}
