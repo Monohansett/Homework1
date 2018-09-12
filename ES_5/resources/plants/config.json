@@ -1,0 +1,53 @@
+{
+	"type": "Collection",
+	"properties": {
+		"plantName": {
+			"name": "plantName",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "plantName",
+			"order": 0
+		},
+		"plantClass": {
+			"name": "plantClass",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "plantClass",
+			"order": 1
+		},
+		"plantAge": {
+			"name": "plantAge",
+			"type": "number",
+			"typeLabel": "number",
+			"required": true,
+			"id": "plantAge",
+			"order": 2
+		},
+		"dangerLevel": {
+			"name": "dangerLevel",
+			"type": "number",
+			"typeLabel": "number",
+			"required": true,
+			"id": "dangerLevel",
+			"order": 3
+		},
+		"plantAreal": {
+			"name": "plantAreal",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "plantAreal",
+			"order": 4
+		},
+		"plantDescription": {
+			"name": "plantDescription",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "plantDescription",
+			"order": 5
+		}
+	}
+}
