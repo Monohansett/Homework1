@@ -33,9 +33,9 @@ div.table-title {
   background: white;
   border-radius:3px;
   border-collapse: collapse;
-  height: 320px;
+  height: 250px;
   margin: auto;
-  max-width: 600px;
+  max-width: 1000px;
   padding:5px;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -112,6 +112,7 @@ td {
   font-size:18px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-right: 1px solid #C1C3D1;
+  max-height: 50px;
 }
 
 td:last-child {
@@ -142,17 +143,54 @@ td.text-right {
   text-align: right;
 }
 
-input, textarea {
+th:last-child {
+  width: 200px;
+}
+
+input, textarea, select {
     margin-top: 5px;
     margin-bottom: 5px;
     width: 40%;
-    border: solid 1px black;
-    border-radius: 5px;
+    border: solid 1px #1b1e24;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px #1b1e24;
     min-width: 40%;
     min-height: 20px;
+    padding: 4px;
+  
+}
+label {
+  color: #d5dde5;
 }
 
 form.plantInfo__form {
    margin-top: 20px;
-   margin-left: 35%
+   margin-left: 35%;
+   font-style:normal;
+   font-family: "Roboto", helvetica, arial, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
 }
+
+div.div__add-plant {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.button__add-plant {
+  border: solid 2px #1b1e24;
+  background: #1b1e24;
+  color: #d5dde5;
+  font-size: 16px;
+  transform: skew(15deg);
+  padding: 10px;
+}
+
+/* label.form__additionalInfo, input.form__additionalInfo {
+    visibility: hidden;
+} */
+/* form.plantInfo__form > textarea {
+   min-height: 40px;
+ } */
+

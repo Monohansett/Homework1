@@ -1,50 +1,14 @@
-// Form data
+const addPlantBtn = document.querySelector('.button__add-plant');
 
-const plantInfoForm = document.querySelector('.plantInfo__form')
-// var dataInForm = {};
+// Declare class "Plant"
 
-function toJSONString(form) {
-    var obj = {};
-    var elements = form.querySelectorAll("input, select, textarea");
-    for (var i = 0; i < elements.length; ++i) {
-        var element = elements[i];
-        var name = element.name;
-        var value = element.value;
-
-        if (name) {
-            obj[name] = value;
-        }
-    }
-
-    return JSON.stringify(obj);
-}
-
-plantInfoForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    theTarget = toJSONString(e.target);
-    plantObject = JSON.parse(theTarget);
-    console.log(plantObject)
-
-    
-    dpd.plants.post({"plantName": plantObject.name, "plantClass": plantObject.class,"plantAge": plantObject.age,"dangerLevel":plantObject.dangerLevel,"plantAreal":plantObject.plantArial,"plantDescription":plantObject.plantDescription}, function(result, err){
-        if (err) console.log(err);
-        console.log(result, result.id)
-    })
-})
-
-// Class "Plant"
-
-function Plant(plantName, plantAge, plantClass, plantDangerLevel, plantArial, plantDescription) {
+function Plant(plantName, plantClass, plantAge, plantDangerLevel, plantArial, plantDescription) {
     this.plantName = plantName;
-    this.plantAge = plantAge;
     this.plantClass = plantClass;
+    this.plantAge = plantAge;
     this.plantDangerLevel = plantDangerLevel;
     this.plantArial = plantArial;
     this.plantDescription = plantDescription;
-
-    this.getPlantInfo = function () {
-        return "Name: " + this.plantName + "\n Age: " + this.plantAge + "\n Class: " + this.plantClass
-    }
 
     this.setPlantInfo = function (plantName, plantAge, plantClass, plantDangerLevel, plantArial) {
         plantName = plantName;
@@ -55,7 +19,16 @@ function Plant(plantName, plantAge, plantClass, plantDangerLevel, plantArial, pl
         plantDescription = plantDescription;
 
     }
+
+    this.getPlantName = () => this.plantName;
+    this.getPlantAge = () => this.plantAge;
+    this.getPlantClass = () => this.plantClass;
+    this.getPlantDangerLevel = () => this.plantDangerLevel;
+    this.getPlantArial = () => this.plantArial;
+    this.getPlantDescription = () => this.plantDescription;
 }
+
+// Declare subclass "Fern"
 
 function Fern(latinName, redBookStatus) {
     Plant.call(this);
@@ -69,6 +42,8 @@ function Fern(latinName, redBookStatus) {
     }
 }
 
+// Declare subclass "Fern"
+
 function Spruce(latinName, redBookStatus) {
     Plant.call(this);
     this.latinName = latinName;
@@ -81,9 +56,43 @@ function Spruce(latinName, redBookStatus) {
     }
 }
 
+addPlantBtn.addEventListener('click', function () {
+    location.href = "/addPlant/plant.html";
+})
 
+document.addEventListener('DOMContentLoaded', loadPlants);
 
+function loadPlants() {
+    dpd.plants.get(function (plants) {
+        plants.map((plant) => {
+            addPlant(plant);
+        })
+    });
+}
 
+function renderControlPanel() {
 
+}
 
+function addPlant(plant) {
+    const tbody = document.querySelector('.table-hover');
+    const tr = document.createElement('tr');
+    // let td = document.createElement('td')
+    // console.log(td)
+    let editLink = document.createElement('a');
+    let deleteLink = document.createElement('a');
+    let infoLink = document.createElement('a');
+    editLink.href = '#';
+    deleteLink.href = '#';
+    infoLink.href = '#';
+    editLink.innerHTML = 'Edit';
+    deleteLink.innerHTML = 'Delete';
+    infoLink.innerHTML = 'Info';
 
+    let plantExample = new Plant(plant.plantName, plant.plantClass, plant.plantAge, plant.dangerLevel, plant.plantArial, plant.plantDescription);
+
+    tr.innerHTML += '<td>' + plantExample.getPlantName() + '</td>' + '<td>' + plantExample.getPlantClass() + '</td>' + '<td>' + plantExample.getPlantAge() + '</td>' + '<td>' + plantExample.getPlantDangerLevel() + '</td>' + '<td>' + plantExample.getPlantArial() + '</td>' + '<td>' + plantExample.getPlantDescription() + '</td>' + '<td>' + '<a href="#">' + 'Details' + '</a>' + '<br>' + '<a href="#">' + 'Edit' + '</a>' + '<br>' + '<a href="#">' + 'Delete' + '</a>' + '</td>'
+
+    tbody.appendChild(tr);
+
+}

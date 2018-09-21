@@ -5,7 +5,7 @@
 			"name": "plantName",
 			"type": "string",
 			"typeLabel": "string",
-			"required": true,
+			"required": false,
 			"id": "plantName",
 			"order": 0
 		},
@@ -13,7 +13,7 @@
 			"name": "plantClass",
 			"type": "string",
 			"typeLabel": "string",
-			"required": true,
+			"required": false,
 			"id": "plantClass",
 			"order": 1
 		},
@@ -21,7 +21,7 @@
 			"name": "plantAge",
 			"type": "number",
 			"typeLabel": "number",
-			"required": true,
+			"required": false,
 			"id": "plantAge",
 			"order": 2
 		},
@@ -29,25 +29,41 @@
 			"name": "dangerLevel",
 			"type": "number",
 			"typeLabel": "number",
-			"required": true,
+			"required": false,
 			"id": "dangerLevel",
 			"order": 3
 		},
-		"plantAreal": {
-			"name": "plantAreal",
+		"plantArial": {
+			"name": "plantArial",
 			"type": "string",
 			"typeLabel": "string",
-			"required": true,
-			"id": "plantAreal",
+			"required": false,
+			"id": "plantArial",
 			"order": 4
 		},
 		"plantDescription": {
 			"name": "plantDescription",
 			"type": "string",
 			"typeLabel": "string",
-			"required": true,
+			"required": false,
 			"id": "plantDescription",
 			"order": 5
+		},
+		"latinName": {
+			"name": "latinName",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "latinName",
+			"order": 6
+		},
+		"redBookStatus": {
+			"name": "redBookStatus",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "redBookStatus",
+			"order": 7
 		}
 	}
 }
