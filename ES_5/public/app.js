@@ -1,4 +1,7 @@
 const addPlantBtn = document.querySelector('.button__add-plant');
+// const deleteLink = document.querySelector('#deleteLink');
+// const editLink = document.querySelector('#editLink');
+// const detailsLink = document.querySelector('#detailsLink');
 
 // Declare class "Plant"
 
@@ -10,7 +13,7 @@ function Plant(plantName, plantClass, plantAge, plantDangerLevel, plantArial, pl
     this.plantArial = plantArial;
     this.plantDescription = plantDescription;
 
-    this.setPlantInfo = function (plantName, plantAge, plantClass, plantDangerLevel, plantArial) {
+    this.setPlantInfo = (plantName, plantAge, plantClass, plantDangerLevel, plantArial) => {
         plantName = plantName;
         plantAge = plantAge;
         plantClass = plantClass;
@@ -63,36 +66,51 @@ addPlantBtn.addEventListener('click', function () {
 document.addEventListener('DOMContentLoaded', loadPlants);
 
 function loadPlants() {
-    dpd.plants.get(function (plants) {
+    dpd.plants.get((plants) => {
         plants.map((plant) => {
             addPlant(plant);
         })
     });
 }
 
-function renderControlPanel() {
-
-}
-
 function addPlant(plant) {
     const tbody = document.querySelector('.table-hover');
     const tr = document.createElement('tr');
-    // let td = document.createElement('td')
-    // console.log(td)
-    let editLink = document.createElement('a');
-    let deleteLink = document.createElement('a');
-    let infoLink = document.createElement('a');
-    editLink.href = '#';
-    deleteLink.href = '#';
-    infoLink.href = '#';
-    editLink.innerHTML = 'Edit';
-    deleteLink.innerHTML = 'Delete';
-    infoLink.innerHTML = 'Info';
+
+    console.log(plant)
+
 
     let plantExample = new Plant(plant.plantName, plant.plantClass, plant.plantAge, plant.dangerLevel, plant.plantArial, plant.plantDescription);
 
-    tr.innerHTML += '<td>' + plantExample.getPlantName() + '</td>' + '<td>' + plantExample.getPlantClass() + '</td>' + '<td>' + plantExample.getPlantAge() + '</td>' + '<td>' + plantExample.getPlantDangerLevel() + '</td>' + '<td>' + plantExample.getPlantArial() + '</td>' + '<td>' + plantExample.getPlantDescription() + '</td>' + '<td>' + '<a href="#">' + 'Details' + '</a>' + '<br>' + '<a href="#">' + 'Edit' + '</a>' + '<br>' + '<a href="#">' + 'Delete' + '</a>' + '</td>'
+    console.log(plant)
+
+    tr.innerHTML += '<td>' + plantExample.getPlantName() + '</td>' + '<td>' + plantExample.getPlantClass() + '</td>' + '<td>' + plantExample.getPlantAge() + '</td>' + '<td>' + plantExample.getPlantDangerLevel() + '</td>' + '<td>' + plantExample.getPlantArial() + '</td>' + '<td>' + plantExample.getPlantDescription() + '</td>' + '<td>' + '<a href="#">' + 'Details' + '</a>' + '<br>' + '<a href="#">' + 'Edit' + '</a>' + '<br>' + '<a href="#" class="deleteLink">' + 'Delete' + '</a>' + '</td>'
 
     tbody.appendChild(tr);
 
-}
+    let deleteLink = document.querySelectorAll('.deleteLink');
+
+    for ( let i = 0; i<deleteLink.length; i++) {
+        deleteLink[i].addEventListener('click', function () {
+            let isDelete = confirm('This entire entry irretrievably! Are you sure?');
+            if (isDelete) {
+                dpd.plants.del(plant.id, function (err) {
+                    if (err) console.log(err)
+                })
+                location.reload()
+            }
+        })
+    }
+
+   
+
+    // function deleteEntry(){
+    //     let isDelete = confirm('This entire entry irretrievably! Are you sure?');
+    //     if (isDelete) {
+    //         dpd.plants.del(plant.id, function(err) {
+    //             if (err) console.log(err)
+    //         })
+    //         location.reload()
+    //     } return false;
+    // };
+};
