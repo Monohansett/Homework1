@@ -71,7 +71,7 @@ function onSelectChange() {
 
     if (selectPlant.options[selectPlant.selectedIndex].value === 'Fern' || 'Spruce') {
         latinNameInput.name = 'latinName';
-        latinNameInput.placeholder = 'Name in Latin'
+        latinNameInput.placeholder = 'Name in Latin';
         redBookStatusInput.name = 'redBookStatus';
         redBookStatusInput.placeholder = 'Red Book Status';
         plantInfoForm.insertBefore(latinNameInput, submitBtn);

@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
 
 body {
-  background-color: #3e94ec;
+  /* background-color: #3e94ec; */
   font-family: "Roboto", helvetica, arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -183,14 +183,35 @@ div.div__add-plant {
   background: #1b1e24;
   color: #d5dde5;
   font-size: 16px;
-  transform: skew(15deg);
+  transform: skew(-15deg);
   padding: 10px;
 }
 
-/* label.form__additionalInfo, input.form__additionalInfo {
-    visibility: hidden;
-} */
-/* form.plantInfo__form > textarea {
-   min-height: 40px;
- } */
+.container__plant-info {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 20px;
+  box-sizing: border-box;
+  border: solid 2px #1b1e24;
+  box-shadow: 1px 1px 5px 1px #1b1e24
+}
 
+div.plant__article {
+  text-align: center;
+  font-size: 48px;
+}
+
+button.button__back-to-main {
+  border: solid 2px #1b1e24;
+  background: #1b1e24;
+  color: #d5dde5;
+  box-shadow: 1px 1px 5px 1px #1b1e24;
+  font-size: 16px;
+  transform: skew(-15deg);
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 45%;
+}

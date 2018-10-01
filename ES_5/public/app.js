@@ -73,6 +73,11 @@ function loadPlants() {
     });
 }
 
+
+// CRUD Methods for entities
+
+//Create
+
 function addPlant(plant) {
     const tbody = document.querySelector('.table-hover');
     const tr = document.createElement('tr');
@@ -82,35 +87,41 @@ function addPlant(plant) {
 
     let plantExample = new Plant(plant.plantName, plant.plantClass, plant.plantAge, plant.dangerLevel, plant.plantArial, plant.plantDescription);
 
-    console.log(plant)
-
-    tr.innerHTML += '<td>' + plantExample.getPlantName() + '</td>' + '<td>' + plantExample.getPlantClass() + '</td>' + '<td>' + plantExample.getPlantAge() + '</td>' + '<td>' + plantExample.getPlantDangerLevel() + '</td>' + '<td>' + plantExample.getPlantArial() + '</td>' + '<td>' + plantExample.getPlantDescription() + '</td>' + '<td>' + '<a href="#">' + 'Details' + '</a>' + '<br>' + '<a href="#">' + 'Edit' + '</a>' + '<br>' + '<a href="#" class="deleteLink">' + 'Delete' + '</a>' + '</td>'
+    tr.innerHTML += '<td>' + plantExample.getPlantName() + '</td>' + '<td>' + plantExample.getPlantClass() + '</td>' + '<td>' + plantExample.getPlantAge() + '</td>' + '<td>' + plantExample.getPlantDangerLevel() + '</td>' + '<td>' + plantExample.getPlantArial() + '</td>' + '<td>' + plantExample.getPlantDescription() + '</td>' + '<td>' + '<a href="#" class="detailsLink">' + 'Details' + '</a>' + '<br>' + '<a href="#">' + 'Edit' + '</a>' + '<br>' + '<a href="#" class="deleteLink">' + 'Delete' + '</a>' + '</td>'
 
     tbody.appendChild(tr);
 
+    // Delete
+
     let deleteLink = document.querySelectorAll('.deleteLink');
 
-    for ( let i = 0; i<deleteLink.length; i++) {
-        deleteLink[i].addEventListener('click', function () {
-            let isDelete = confirm('This entire entry irretrievably! Are you sure?');
-            if (isDelete) {
-                dpd.plants.del(plant.id, function (err) {
-                    if (err) console.log(err)
-                })
-                location.reload()
-            }
+    function deleteEntry() {
+        let isDelete = confirm('This entire entry irretrievably! Are you sure?');
+        if (isDelete) {
+            dpd.plants.del(plant.id, function (err) {
+                if (err) console.log(err)
+            })
+            location.reload()
+        }
+    }
+
+    for (let i = 0; i < deleteLink.length; i++) {
+        deleteLink[i].addEventListener('click', deleteEntry)
+    }
+
+    //Read details
+
+    let detailsLink = document.querySelectorAll('.detailsLink');
+
+    function showPlantDetails() {
+        dpd.plants.get(plant.id, function(res) {
+            res = plant.id
+            // console.log(res)
+            location.href='/plantDetails/details.html?' + res;
         })
     }
 
-   
-
-    // function deleteEntry(){
-    //     let isDelete = confirm('This entire entry irretrievably! Are you sure?');
-    //     if (isDelete) {
-    //         dpd.plants.del(plant.id, function(err) {
-    //             if (err) console.log(err)
-    //         })
-    //         location.reload()
-    //     } return false;
-    // };
+    for (let i = 0; i < detailsLink.length; i++) {
+        detailsLink[i].addEventListener('click', showPlantDetails)
+    }
 };
