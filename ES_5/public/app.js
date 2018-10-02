@@ -87,11 +87,11 @@ function addPlant(plant) {
 
     let plantExample = new Plant(plant.plantName, plant.plantClass, plant.plantAge, plant.dangerLevel, plant.plantArial, plant.plantDescription);
 
-    tr.innerHTML += '<td>' + plantExample.getPlantName() + '</td>' + '<td>' + plantExample.getPlantClass() + '</td>' + '<td>' + plantExample.getPlantAge() + '</td>' + '<td>' + plantExample.getPlantDangerLevel() + '</td>' + '<td>' + plantExample.getPlantArial() + '</td>' + '<td>' + plantExample.getPlantDescription() + '</td>' + '<td>' + '<a href="#" class="detailsLink">' + 'Details' + '</a>' + '<br>' + '<a href="#">' + 'Edit' + '</a>' + '<br>' + '<a href="#" class="deleteLink">' + 'Delete' + '</a>' + '</td>'
+    tr.innerHTML += '<td>' + plantExample.getPlantName() + '</td>' + '<td>' + plantExample.getPlantClass() + '</td>' + '<td>' + plantExample.getPlantAge() + '</td>' + '<td>' + plantExample.getPlantDangerLevel() + '</td>' + '<td>' + plantExample.getPlantArial() + '</td>' + '<td>' + plantExample.getPlantDescription() + '</td>' + '<td>' + '<a href="#" class="detailsLink">' + 'Details' + '</a>' + '<br>' + '<a href="#" class="editLink">' + 'Edit' + '</a>' + '<br>' + '<a href="#" class="deleteLink">' + 'Delete' + '</a>' + '</td>'
 
     tbody.appendChild(tr);
 
-    // Delete
+    // Delete entity
 
     let deleteLink = document.querySelectorAll('.deleteLink');
 
@@ -124,4 +124,21 @@ function addPlant(plant) {
     for (let i = 0; i < detailsLink.length; i++) {
         detailsLink[i].addEventListener('click', showPlantDetails)
     }
+
+    //Edit entity
+
+    let editLink = document.querySelectorAll('.editLink');
+
+    function editPlantDetails() {
+        dpd.plants.get(plant.id, function(res) {
+            res = plant.id
+            // console.log(res)
+            location.href='/editPlant/edit.html?' + res;
+        })
+    }
+
+    for (let i = 0; i < editLink.length; i++) {
+        editLink[i].addEventListener('click', editPlantDetails)
+    }
+
 };

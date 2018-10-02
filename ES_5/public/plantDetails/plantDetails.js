@@ -4,7 +4,7 @@ window.onload = function () {
 
     //"GET" request by entity ID
 
-    let promise = new Promise((resolve, reject) => {
+    let getPlant = new Promise((resolve, reject) => {
         dpd.plants.get(decodeId, (result, err) => {
             if (result) resolve(result)
             if (err) reject(err)
@@ -13,7 +13,7 @@ window.onload = function () {
 
     // Render entity after "GET" request
 
-    promise.then(
+    getPlant.then(
         (plant) => {
             let div = document.createElement('div');
             let btn = document.createElement('button');
