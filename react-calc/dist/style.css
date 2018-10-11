@@ -1,0 +1,11 @@
+input {
+    margin: 5px 5px;
+    text-align: right;
+    width: auto;
+}
+
+.container > .inputs__values {
+    display: table;
+    margin: 0 auto;
+    margin-top: 100px;
+}
